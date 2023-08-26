@@ -18,4 +18,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('companies', CompanyController::class);
+// Route::resource('companies', CompanyController::class);
+
+Route::group([
+    'as' => "companies.",
+    // 'middleware' => "auth"
+], function () {
+
+    Route::get('/companies', ['uses' => 'CompanyController@index', 'as' => 'index']);
+
+    Route::get('/companies/create', ['uses' => 'CompanyController@create', 'as' => 'create']);
+
+    Route::get('/companies/edit/{id}', ['uses' => 'CompanyController@edit', 'as' => 'edit']);
+
+    Route::post('/companies/store', ['uses' => 'CompanyController@store', 'as' => 'store']);
+
+    Route::post('/companies/update', ['uses' => 'CompanyController@update', 'as' => 'update']);
+
+    Route::post('/companies/delete{id}', ['uses' => 'CompanyController@destroy', 'as' => 'destroy']);
+
+
+
+
+
+});
