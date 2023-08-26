@@ -36,9 +36,5 @@ Route::group([
     Route::put('/companies/update/{id}', ['uses' => 'CompanyController@update', 'as' => 'update']);
 
     Route::delete('/companies/delete/{id}', ['uses' => 'CompanyController@destroy', 'as' => 'destroy']);
-
-
-
-
-
+    
 });
