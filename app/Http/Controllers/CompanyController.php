@@ -10,7 +10,7 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $data['companies'] = Company::orderBy('id', 'desc')->paginate(5);
+        $data['companies'] = Company::orderBy('id', 'asc')->paginate(5);
 
         return view('companies.index', $data);
     }
@@ -28,11 +28,18 @@ class CompanyController extends Controller
             'address' => 'required'
         ]);
 
-        $company = new Company;
+        // $company = new Company;
+        // $company->name = $request->name;
+        // $company->email = $request->email;
+        // $company->address = $request->addresss;
 
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->address = $request->address;
+
+        $company = new Company([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'address' => $request->get('address'),
+
+        ]);
 
 
         $company->save();
@@ -66,16 +73,19 @@ class CompanyController extends Controller
 
         $company = Company::find($id);
 
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->address = $request->address;
+        // $company->name = $request->name;
+        // $company->email = $request->email;
+        // $company->address = $request->address;
 
-        $company->save();
+        $company->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
 
         return redirect()->route('companies.index')
             ->with('success', 'Company Has Been updated successfully');
     }
-
 
     public function destroy(Company $company, $id)
     {
