@@ -49,12 +49,10 @@ class CompanyController extends Controller
             ->with('success', 'Company has been created successfully.');
     }
 
-
     public function show(Company $company)
     {
         return view('companies.show', compact('company'));
     }
-
 
     public function edit(Company $company, $id)
     {
