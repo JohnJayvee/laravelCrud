@@ -33,9 +33,9 @@ Route::group([
 
     Route::post('/companies/store', ['uses' => 'CompanyController@store', 'as' => 'store']);
 
-    Route::post('/companies/update', ['uses' => 'CompanyController@update', 'as' => 'update']);
+    Route::put('/companies/update/{id}', ['uses' => 'CompanyController@update', 'as' => 'update']);
 
-    Route::post('/companies/delete{id}', ['uses' => 'CompanyController@destroy', 'as' => 'destroy']);
+    Route::delete('/companies/delete/{id}', ['uses' => 'CompanyController@destroy', 'as' => 'destroy']);
 
 
 

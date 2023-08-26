@@ -49,8 +49,9 @@ class CompanyController extends Controller
     }
 
 
-    public function edit(Company $company)
+    public function edit(Company $company, $id)
     {
+        $company = Company::find($id);
         return view('companies.edit', compact('company'));
     }
 
@@ -76,8 +77,9 @@ class CompanyController extends Controller
     }
 
 
-    public function destroy(Company $company)
+    public function destroy(Company $company, $id)
     {
+        $company = Company::find($id);
         $company->delete();
 
         return redirect()->route('companies.index')
